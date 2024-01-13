@@ -1,0 +1,25 @@
+POST http://localhost:3000/user
+Content-Type: application/json
+
+{
+  "name": "test akun",
+  "email": "test@test.com",
+  "password": "test"
+}
+
+### find one user
+GET http://localhost:3000/user/3
+
+### find user
+GET http://localhost:3000/user?email=test@test.com
+
+### update user
+PUT http://localhost:3000/user/3
+Content-Type: application/json
+
+{
+  "name": "update akun"
+}
+
+### delete user
+DELETE http://localhost:3000/user/3
