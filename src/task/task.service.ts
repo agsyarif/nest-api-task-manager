@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Tasks } from './Tasks';
 import { Like, Repository } from 'typeorm';
@@ -92,5 +92,15 @@ export class TaskService {
       .getMany();
     
     return tasks;
+  }
+
+  async changeStatus(id: number, status: string) {
+    const task = await this.findId(id);
+    if(!task) {
+      throw new NotFoundException('Task not found');
+    }
+
+    task.status = status
+    return this.repo.save(task)
   }
 }

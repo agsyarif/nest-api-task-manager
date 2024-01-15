@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Query, UseGuards } from '@nestjs/common';
 import { TaskService } from './task.service';
 import { CreateTaskDto } from './dtos/create-task.dto';
 import { CurrentUser } from 'src/user/decorators/current-user.decorator';
@@ -34,7 +34,13 @@ export class TaskController {
     return this.taskService.getTask(query)
   }
 
-  // update
+  // 
+  @Put('/:id')
+  async changeStatus(@Param('id') id: string, @Body() body: any) {
+    console.log(body.status);
+    
+    return this.taskService.changeStatus(parseInt(id), body.status)
+  }
 
   // remove
 }

@@ -22,13 +22,13 @@ export class TaskDto {
     if(!value){
       return null
     }
-    return format(value, "Y-MM-d h:m:s");
+    return format(value, "Y-MM-d H:m:s");
   })
   @Expose()
   deadline: string
   
   @Transform(({value}) => {
-    return format(value, "Y-MM-d h:m:s");
+    return format(value, "Y-MM-d H:m:s");
   })
   @Expose()
   created_at: Date;
