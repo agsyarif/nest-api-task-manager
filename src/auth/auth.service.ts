@@ -25,7 +25,7 @@ export class AuthService {
     const result = salt + '.' + hash.toString('hex');
     const user = await this.userService.create(name, email, result)
 
-    const token = this.jwtService.sign({user})
+    const token = this.jwtService.sign({...user})
     user['token'] = token;
     return user;
   }
@@ -45,7 +45,7 @@ export class AuthService {
     }
 
     // const token = this.jwtService.sign({id: user.id})
-    const token = this.jwtService.sign({user})
+    const token = this.jwtService.sign({...user})
     user['token'] = token;
     return user;
   }

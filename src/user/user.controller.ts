@@ -2,8 +2,11 @@ import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/
 import { UserService } from './user.service';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
+import { UserDto } from './dtos/user.dto';
+import { Serialize } from 'src/interceptors/serialize.interceptor';
 
 @Controller('user')
+@Serialize(UserDto)
 export class UserController {
   constructor(private userService: UserService) {}
 
@@ -19,7 +22,8 @@ export class UserController {
 
   @Get()
   find(@Query('email') email: string) {
-    return this.userService.find(email)
+    const users = this.userService.find(email)
+    return users;
   }
 
   @Put('/:id')

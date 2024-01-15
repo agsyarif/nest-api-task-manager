@@ -29,9 +29,7 @@ export class AuthMiddleware implements NestMiddleware {
     }
     
     try {
-      const decoded = await this.jwtService.verify(token);
-      console.log(decoded);
-      
+      const decoded = await this.jwtService.verify(token);      
       req.currentUser = decoded;
       
       next();

@@ -22,8 +22,10 @@ export class AuthController {
   }
 
   @Get('/current-user')
-  // @UseGuards(AuthGuard)
+  @UseGuards(AuthGuard)
   currentUser(@Headers() header: any, @CurrentUser() user: Users) {
+    console.log(user);
+    
     return user;
   }
 }

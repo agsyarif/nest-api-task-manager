@@ -8,7 +8,7 @@ Content-Type: application/json
 }
 
 ### find one user
-GET http://localhost:3000/user/3
+GET http://localhost:3000/user/1
 
 ### find user
 GET http://localhost:3000/user?email=test@test.com

@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
   "name": "test SignUp",
-  "email": "signup3@test.com",
+  "email": "signup1@test.com",
   "password": "test"
 }
 
@@ -13,10 +13,10 @@ POST http://localhost:3000/auth/signin
 Content-Type: application/json
 
 {
-  "email": "signup@test.com",
+  "email": "signup6@test.com",
   "password": "test"
 }
 
 ### current user
 GET http://localhost:3000/auth/current-user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Im5hbWUiOiJ0ZXN0IFNpZ25VcCIsImVtYWlsIjoic2lnbnVwM0B0ZXN0LmNvbSIsInBhc3N3b3JkIjoiZjMzNTAxMTg5N2Y4Y2M5OC4yMjlmMGUwYmE2Yzg0YTM1OTJlZTcyNzFlNDMwNjcwODAxODUzZjgxNGUxODAxYTg5NDY4MDEyZDU5OGU0ZDRjIiwiaWQiOjUsImNyZWF0ZWRfYXQiOiIyMDI0LTAxLTEzVDEwOjA4OjI0LjAwMFoiLCJ1cGRhdGVkX2F0IjoiMjAyNC0wMS0xM1QxMDowODoyNC4wMDBaIn0sImlhdCI6MTcwNTE0MDUwNH0.Dwc1Wx5UBqfkh0YH7hyJZs57NrgrJy4B89t6w0R7JQM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzdCBTaWduVXAiLCJlbWFpbCI6InNpZ251cDFAdGVzdC5jb20iLCJwYXNzd29yZCI6ImUyY2Q3OWVkYjM1NzdjYTUuZGEwNDQwMGMzZmY2ODBkMTc4M2YwZWZkMzAyMGQ4NWZiZDdlY2Q5MmMyZTM5Y2RkNzc2ZDUxZjA1NWRmNjA4YyIsImlkIjoxLCJjcmVhdGVkX2F0IjoiMjAyNC0wMS0xNVQwMzoxNzo0NS40MDdaIiwidXBkYXRlZF9hdCI6IjIwMjQtMDEtMTVUMDM6MTc6NDUuNDA3WiIsImlhdCI6MTcwNTI4ODY2NX0.3t5FHsARNYfrPRlBfQbD0qq6fhjtfU7zh3mH7fVaVFI
