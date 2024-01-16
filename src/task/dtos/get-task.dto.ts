@@ -1,4 +1,4 @@
-import { IsDate, IsOptional, IsString } from "class-validator"
+import { IsDate, IsNumber, IsOptional, IsString } from "class-validator"
 
 type SortOrder = "DESC" | "ASC";
 export class GetTaskDto {
@@ -21,4 +21,12 @@ export class GetTaskDto {
   @IsOptional()
   @IsString()
   sort_field: string
+
+  @IsOptional()
+  // @IsNumber()
+  page?: number;
+
+  @IsOptional()
+  // @IsNumber()
+  pageSize?: number;
 }

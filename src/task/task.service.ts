@@ -5,6 +5,7 @@ import { Like, Repository } from 'typeorm';
 import { CreateTaskDto } from './dtos/create-task.dto';
 import { Users } from 'src/user/User';
 import { GetTaskDto } from './dtos/get-task.dto';
+import { PaginationMeta } from './dtos/pagination-meta.dto';
 
 @Injectable()
 export class TaskService {
@@ -51,23 +52,12 @@ export class TaskService {
     return task;
   }
 
-  async getTask({q, status, deadline, sort_dir, sort_field}: GetTaskDto) {
-    // console.log(q);
-    
-    // const tasks = await this.repo
-    //   .createQueryBuilder()
-    //   .leftJoinAndSelect('Tasks.user', 'Users')
-    //   .where('Tasks.title LIKE :q', { q: `%${q}%` })
-    //   .getMany()
-
-    console.log('====');
+  async getTask({q, status, deadline, sort_dir, sort_field, page = 1, pageSize = 10}: GetTaskDto): Promise<{ data: Tasks[]; meta: PaginationMeta }> {
 
     const sortDir = sort_dir ?? "DESC";
     const sortField = sort_field ?? "created_at";
-
-    console.log("user." + sortField);
-    console.log(sortDir);
-    
+  
+    const skip = (page - 1) * pageSize;
 
     const queryBuilder = this.repo
       .createQueryBuilder('Tasks')
@@ -86,12 +76,29 @@ export class TaskService {
       if(deadline) {
         queryBuilder.andWhere('Tasks.deadline = :deadline', { deadline });
       }
-    
-    const tasks = await queryBuilder
+
+    const [data, itemCount] = await queryBuilder
+      .skip(skip)
+      .take(pageSize)
       .orderBy("Tasks." + sortField, sortDir)
-      .getMany();
+      .getManyAndCount();
+      
+    const pageCount = Math.ceil(itemCount / pageSize);
+    const hasPreviousPage = page > 1;
+    const hasNextPage = page < pageCount;
+
+    const meta: PaginationMeta = {
+      page,
+      pageSize,
+      itemCount,
+      pageCount,
+      hasPreviousPage,
+      hasNextPage,
+    };
+
+    console.log(meta);
     
-    return tasks;
+    return { data, meta };
   }
 
   async changeStatus(id: number, status: string) {

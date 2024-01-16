@@ -16,7 +16,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzdCBTa
 
 
 ### find task
-GET http://localhost:3000/task?q=description&status=note&sort_dir=ASC&sort_field=title
+GET http://localhost:3000/task?q=description&status=note&sort_dir=ASC&sort_field=title&page=2&pageSize=3
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzdCBTaWduVXAiLCJlbWFpbCI6InNpZ251cDFAdGVzdC5jb20iLCJwYXNzd29yZCI6ImRiNTQzMGU1OTFmOGJiNDUuNGZmYWEyM2MwMjIxZmY0OWM1MTZiMGFiZmY5MWMzMmMyZGQyMWVlMWNmZWU3ODQ3NDQwODk1NTNkNzViZDBhZCIsImlkIjoxLCJjcmVhdGVkX2F0IjoiMjAyNC0wMS0xNFQyMDo0MToxNS42NzdaIiwidXBkYXRlZF9hdCI6IjIwMjQtMDEtMTRUMjA6NDE6MTUuNjc3WiIsImlhdCI6MTcwNTI5MDA3NX0.9ft49NYJzfuz3G3WjB2VWB31ulKWreumHyRzwfi2m8s
 
 ### Change status
