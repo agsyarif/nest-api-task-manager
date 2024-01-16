@@ -10,9 +10,11 @@ import { query } from 'express';
 import { GetTaskDto } from './dtos/get-task.dto';
 import { plainToClass } from 'class-transformer';
 import { PaginationMeta } from './dtos/pagination-meta.dto';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @Controller('task')
 @UseGuards(AuthGuard)
+@ApiBearerAuth('access-token')
 // @Serialize(TaskDto)
 export class TaskController {
   constructor(private readonly taskService: TaskService) {}
