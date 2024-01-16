@@ -12,6 +12,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { TaskModule } from './task/task.module';
 import { Tasks } from './task/Tasks';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TaskCategoryModule } from './task-category/task-category.module';
+import { TaskCategoryEntity } from './task-category/task-category.entity';
 
 @Module({
   imports: [
@@ -40,13 +42,14 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       database: "taskmanager",
       synchronize: false,
       logging: true,
-      entities: [Users, Tasks],
+      entities: [Users, Tasks, TaskCategoryEntity],
       subscribers: [],
       migrations: []
     }),
     UserModule,
     AuthModule,
-    TaskModule
+    TaskModule,
+    TaskCategoryModule
   ],
   controllers: [AppController, UserController, AuthController],
   providers: [AppService],

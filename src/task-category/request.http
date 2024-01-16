@@ -1,0 +1,7 @@
+### create task category
+POST http://localhost:3000/task-category
+Content-Type: application/json
+
+{
+  "title": "Sedang"
+}

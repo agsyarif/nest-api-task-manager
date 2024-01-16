@@ -1,4 +1,5 @@
 import { Exclude } from "class-transformer"
+import { TaskCategoryEntity } from "src/task-category/task-category.entity"
 import { Users } from "src/user/User"
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm"
 
@@ -33,4 +34,7 @@ export class Tasks {
 
   @ManyToOne(() => Users, (User) => User.Tasks)
   user: Users;
+
+  @ManyToOne(() => TaskCategoryEntity, (TaskCategoryEntity) => TaskCategoryEntity.Tasks)
+  taskCategory: TaskCategoryEntity
 }

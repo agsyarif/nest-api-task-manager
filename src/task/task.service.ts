@@ -6,13 +6,14 @@ import { CreateTaskDto } from './dtos/create-task.dto';
 import { Users } from 'src/user/User';
 import { GetTaskDto } from './dtos/get-task.dto';
 import { PaginationMeta } from './dtos/pagination-meta.dto';
+import { TaskCategoryEntity } from 'src/task-category/task-category.entity';
 
 @Injectable()
 export class TaskService {
   constructor(@InjectRepository(Tasks) private repo: Repository<Tasks>) {}
 
 
-  create(body: CreateTaskDto, user: Users) {    
+  create(body: CreateTaskDto, user: Users, taskCategory: TaskCategoryEntity) {    
     if (!user || !user.id) {
       throw new BadRequestException('User is required with a valid ID');
     }
@@ -20,6 +21,7 @@ export class TaskService {
     // const task = this.repo.create({ ...body, user: user });
     const task = this.repo.create(body);
     task.user = user
+    task.taskCategory = taskCategory
     
     return this.repo.save(task);
   }
@@ -61,7 +63,8 @@ export class TaskService {
 
     const queryBuilder = this.repo
       .createQueryBuilder('Tasks')
-      .leftJoinAndSelect('Tasks.user', 'Users');
+      .leftJoinAndSelect('Tasks.user', 'Users')
+      .leftJoinAndSelect('Tasks.taskCategory', 'TaskCategoryEntity')
 
       if(q) {
         queryBuilder

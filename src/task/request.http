@@ -4,19 +4,20 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzdCBTaWduVXAiLCJlbWFpbCI6InNpZ251cDFAdGVzdC5jb20iLCJwYXNzd29yZCI6ImRiNTQzMGU1OTFmOGJiNDUuNGZmYWEyM2MwMjIxZmY0OWM1MTZiMGFiZmY5MWMzMmMyZGQyMWVlMWNmZWU3ODQ3NDQwODk1NTNkNzViZDBhZCIsImlkIjoxLCJjcmVhdGVkX2F0IjoiMjAyNC0wMS0xNFQyMDo0MToxNS42NzdaIiwidXBkYXRlZF9hdCI6IjIwMjQtMDEtMTRUMjA6NDE6MTUuNjc3WiIsImlhdCI6MTcwNTI5MDA3NX0.9ft49NYJzfuz3G3WjB2VWB31ulKWreumHyRzwfi2m8s
 
 {
-  "title": "B Tasks 1",
+  "title": "C Tasks 1",
   "description": "description task",
   "status": "note",
-  "deadline": "2024-01-16 15:00:00"
+  "deadline": "2024-01-16 15:00:00",
+  "taskCategoryId": 1
 }
 
 ### find one task
-GET http://localhost:3000/task/8
+GET http://localhost:3000/task/12
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzdCBTaWduVXAiLCJlbWFpbCI6InNpZ251cDFAdGVzdC5jb20iLCJwYXNzd29yZCI6ImRiNTQzMGU1OTFmOGJiNDUuNGZmYWEyM2MwMjIxZmY0OWM1MTZiMGFiZmY5MWMzMmMyZGQyMWVlMWNmZWU3ODQ3NDQwODk1NTNkNzViZDBhZCIsImlkIjoxLCJjcmVhdGVkX2F0IjoiMjAyNC0wMS0xNFQyMDo0MToxNS42NzdaIiwidXBkYXRlZF9hdCI6IjIwMjQtMDEtMTRUMjA6NDE6MTUuNjc3WiIsImlhdCI6MTcwNTI5MDA3NX0.9ft49NYJzfuz3G3WjB2VWB31ulKWreumHyRzwfi2m8s
 
 
 ### find task
-GET http://localhost:3000/task?q=description&status=note&sort_dir=ASC&sort_field=title&page=2&pageSize=3
+GET http://localhost:3000/task?q=description&status=note&sort_dir=ASC&sort_field=id&page=1&pageSize=10
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidGVzdCBTaWduVXAiLCJlbWFpbCI6InNpZ251cDFAdGVzdC5jb20iLCJwYXNzd29yZCI6ImRiNTQzMGU1OTFmOGJiNDUuNGZmYWEyM2MwMjIxZmY0OWM1MTZiMGFiZmY5MWMzMmMyZGQyMWVlMWNmZWU3ODQ3NDQwODk1NTNkNzViZDBhZCIsImlkIjoxLCJjcmVhdGVkX2F0IjoiMjAyNC0wMS0xNFQyMDo0MToxNS42NzdaIiwidXBkYXRlZF9hdCI6IjIwMjQtMDEtMTRUMjA6NDE6MTUuNjc3WiIsImlhdCI6MTcwNTI5MDA3NX0.9ft49NYJzfuz3G3WjB2VWB31ulKWreumHyRzwfi2m8s
 
 ### Change status

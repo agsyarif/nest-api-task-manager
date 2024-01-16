@@ -1,6 +1,8 @@
 import { Expose, Transform, Type, plainToClass } from "class-transformer"
 import { format } from "date-fns"
 import * as dayjs from 'dayjs';
+import { taskCategoryDto } from "src/task-category/task-category.dto";
+import { TaskCategoryEntity } from "src/task-category/task-category.entity";
 import { UserDto } from "src/user/dtos/user.dto"
 var utc = require('dayjs/plugin/utc')
 var timezone = require('dayjs/plugin/timezone')
@@ -51,4 +53,14 @@ export class TaskDto {
   })
   @Expose()
   user: UserDto;
+
+  @Transform(({ obj }) => {
+    console.log("----");
+    
+    console.log(obj);
+    return plainToClass(taskCategoryDto, obj.taskCategory, { excludeExtraneousValues: true });
+    
+  })
+  @Expose()
+  taskCategory: taskCategoryDto;
 }

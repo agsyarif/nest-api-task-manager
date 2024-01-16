@@ -1,5 +1,5 @@
 import { Transform, TransformFnParams } from "class-transformer";
-import { IsDate, IsNotEmpty, IsOptional, IsString } from "class-validator"
+import { IsDate, IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator"
 
 export class CreateTaskDto {
   @IsNotEmpty()
@@ -22,5 +22,8 @@ export class CreateTaskDto {
   @IsDate()
   @Transform(({ value }: TransformFnParams) => new Date(value))
   deadline: "timestamp";
-  
+
+  @IsNotEmpty()
+  @Transform(({ value }: TransformFnParams) => parseInt(value))
+  taskCategoryId: number  
 }

@@ -5,11 +5,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Tasks } from './Tasks';
 import { AuthMiddleware } from 'src/middlewares/auth-middleware';
 import { JwtModule } from '@nestjs/jwt';
+import { TaskCategoryModule } from 'src/task-category/task-category.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Tasks]),
-    JwtModule.register({secret: 'rahasiabanget', signOptions: { expiresIn: '60s' }}),
+    JwtModule.register({secret: 'rahasiabanget'}),
+    TaskCategoryModule
   ],
   providers: [TaskService],
   controllers: [TaskController],
