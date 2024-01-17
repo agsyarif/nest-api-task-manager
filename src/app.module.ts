@@ -14,6 +14,7 @@ import { Tasks } from './task/Tasks';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TaskCategoryModule } from './task-category/task-category.module';
 import { TaskCategoryEntity } from './task-category/task-category.entity';
+// import { AxiosService } from './axios.service';
 
 @Module({
   imports: [
@@ -52,6 +53,6 @@ import { TaskCategoryEntity } from './task-category/task-category.entity';
     TaskCategoryModule
   ],
   controllers: [AppController, UserController, AuthController],
-  providers: [AppService],
+  providers: [AppService], //AxiosService
 })
 export class AppModule {}

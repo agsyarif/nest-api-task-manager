@@ -1,4 +1,4 @@
-import { Body, Controller, Get, NotFoundException, Param, Post, Put, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, DefaultValuePipe, Get, NotFoundException, Param, ParseIntPipe, Post, Put, Query, UseGuards } from '@nestjs/common';
 import { TaskService } from './task.service';
 import { CreateTaskDto } from './dtos/create-task.dto';
 import { CurrentUser } from 'src/user/decorators/current-user.decorator';
@@ -12,6 +12,8 @@ import { plainToClass } from 'class-transformer';
 import { PaginationMeta } from './dtos/pagination-meta.dto';
 import { ApiBearerAuth } from '@nestjs/swagger';
 import { TaskCategoryService } from 'src/task-category/task-category.service';
+import { Pagination } from 'nestjs-typeorm-paginate';
+import { Tasks } from './Tasks';
 
 @Controller('task')
 @UseGuards(AuthGuard)
@@ -43,15 +45,15 @@ export class TaskController {
     return transformedData;
   }
 
-  // get all
+  // get all. PAGINASI DI SERVICE
   @Get()
-  async find(@Query() query: GetTaskDto): Promise<{ data: TaskDto[]; meta: PaginationMeta }> {
-    const {data, meta} = await this.taskService.getTask(query)
+  async find(@Query() query: GetTaskDto): Promise<{ data: TaskDto[]; meta: PaginationMeta, links: any }> {
+    const {data, meta, links} = await this.taskService.getTask(query)
 
     // Transformasi data menggunakan class-transformer
     const transformedData = plainToClass(TaskDto, data);
 
-    return { data: transformedData, meta };
+    return { data: transformedData, meta, links};
   }
 
   // 

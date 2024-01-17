@@ -1,5 +1,7 @@
-import { IsDate, IsNumber, IsOptional, IsString } from "class-validator"
+import { IsDate, IsInt, IsNumber, IsOptional, IsString } from "class-validator"
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { DefaultValuePipe } from "@nestjs/common";
+import { Transform } from "class-transformer";
 
 type SortOrder = "DESC" | "ASC";
 export class GetTaskDto {
@@ -30,11 +32,15 @@ export class GetTaskDto {
 
   @ApiPropertyOptional()
   @IsOptional()
+  @Transform(({ value }) => parseInt(value))
+  @IsInt({ message: 'Page must be an integer' })
   // @IsNumber()
   page?: number;
 
   @ApiPropertyOptional()
   @IsOptional()
+  @Transform(({ value }) => parseInt(value))
+  @IsInt({ message: 'Page must be an integer' })
   // @IsNumber()
   pageSize?: number;
 }
