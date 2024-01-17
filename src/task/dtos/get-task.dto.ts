@@ -1,4 +1,4 @@
-import { IsDate, IsInt, IsNumber, IsOptional, IsString } from "class-validator"
+import { IsDate, IsInt, IsNotEmpty, IsNumber, IsOptional, IsString, ValidateIf } from "class-validator"
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { DefaultValuePipe } from "@nestjs/common";
 import { Transform } from "class-transformer";
@@ -38,9 +38,10 @@ export class GetTaskDto {
   page?: number;
 
   @ApiPropertyOptional()
-  @IsOptional()
+  @ValidateIf((obj) => obj.page !== undefined)
   @Transform(({ value }) => parseInt(value))
   @IsInt({ message: 'Page must be an integer' })
+  @IsNotEmpty({ message: 'PageSize is required when Page is provided' })
   // @IsNumber()
   pageSize?: number;
 }

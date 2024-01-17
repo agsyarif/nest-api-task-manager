@@ -6,6 +6,7 @@ import { Tasks } from './Tasks';
 import { AuthMiddleware } from 'src/middlewares/auth-middleware';
 import { JwtModule } from '@nestjs/jwt';
 import { TaskCategoryModule } from 'src/task-category/task-category.module';
+import { PaginationUtil } from 'src/utils/pagination-util';
 
 @Module({
   imports: [
@@ -13,7 +14,7 @@ import { TaskCategoryModule } from 'src/task-category/task-category.module';
     JwtModule.register({secret: 'rahasiabanget'}),
     TaskCategoryModule
   ],
-  providers: [TaskService],
+  providers: [TaskService, PaginationUtil],
   controllers: [TaskController],
   exports: [TaskService]
 })

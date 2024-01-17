@@ -9,10 +9,14 @@ import { PaginationMeta } from './dtos/pagination-meta.dto';
 import { TaskCategoryEntity } from 'src/task-category/task-category.entity';
 import { IPaginationOptions, Pagination, paginate } from 'nestjs-typeorm-paginate';
 import { TaskDto } from './dtos/task.dto';
+import { PaginationUtil } from './../utils/pagination-util';
 
 @Injectable()
 export class TaskService {
-  constructor(@InjectRepository(Tasks) private repo: Repository<Tasks>) {}
+  constructor(
+    @InjectRepository(Tasks) private repo: Repository<Tasks>,
+    private readonly paginationUtil: PaginationUtil
+  ) {}
 
 
   create(body: CreateTaskDto, user: Users, taskCategory: TaskCategoryEntity) {    
@@ -114,6 +118,47 @@ export class TaskService {
       };
   
       return { data, meta, links };
+    } catch (error) {
+      // Handle errors gracefully
+      throw new Error(`Failed to fetch tasks: ${error.message}`);
+    }
+  }
+
+  // with pagination util
+  async getIndex(
+    { q, status, deadline, sort_dir, sort_field, page = 1, pageSize = 10 }: GetTaskDto
+  ) {
+    try {
+      const sortDir = sort_dir || "DESC";
+      const sortField = sort_field || "created_at";
+  
+      const skip = (page - 1) * pageSize;
+  
+      const queryBuilder = this.repo
+        .createQueryBuilder('Tasks')
+        .leftJoinAndSelect('Tasks.user', 'Users')
+        .leftJoinAndSelect('Tasks.taskCategory', 'TaskCategoryEntity');
+  
+      if (q) {
+        queryBuilder
+          .where('Tasks.title LIKE :q OR Tasks.description LIKE :q', { q: `%${q}%` });
+      }
+  
+      if (status) {
+        queryBuilder.andWhere('Tasks.status = :status', { status });
+      }
+  
+      if (deadline) {
+        queryBuilder.andWhere('Tasks.deadline = :deadline', { deadline });
+      }
+  
+      const [data, itemCount] = await queryBuilder
+        .skip(skip)
+        .take(pageSize)
+        .orderBy(`Tasks.${sortField}`, sortDir)
+        .getManyAndCount();
+
+      return { data, itemCount };
     } catch (error) {
       // Handle errors gracefully
       throw new Error(`Failed to fetch tasks: ${error.message}`);

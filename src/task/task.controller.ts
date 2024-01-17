@@ -14,6 +14,7 @@ import { ApiBearerAuth } from '@nestjs/swagger';
 import { TaskCategoryService } from 'src/task-category/task-category.service';
 import { Pagination } from 'nestjs-typeorm-paginate';
 import { Tasks } from './Tasks';
+import { PaginationLinks, PaginationUtil } from './../utils/pagination-util';
 
 @Controller('task')
 @UseGuards(AuthGuard)
@@ -22,7 +23,8 @@ import { Tasks } from './Tasks';
 export class TaskController {
   constructor(
     private readonly taskService: TaskService,
-    private readonly taskCategoryService: TaskCategoryService
+    private readonly taskCategoryService: TaskCategoryService,
+    private readonly paginationUtil: PaginationUtil,
   ) {}
 
   @Post()
@@ -54,6 +56,32 @@ export class TaskController {
     const transformedData = plainToClass(TaskDto, data);
 
     return { data: transformedData, meta, links};
+  }
+
+  // get all -> with pagination utils
+  @Get('paginate/with-util')
+  async index(
+    @Query() query: GetTaskDto
+  ): Promise<{ data: TaskDto[]; meta?: PaginationMeta; links?: PaginationLinks }> {
+    
+    const { data, itemCount } = await this.taskService.getIndex(query);
+    
+    const transformedData = plainToClass(TaskDto, data);
+
+    if (query.pageSize === undefined) {
+      return { data: transformedData };
+    }
+    
+    const { meta, links } = this.paginationUtil.generatePagination(
+      itemCount,
+      query.pageSize,
+      query.page,
+      "http://localhost:3000/task/paginate/with-util"
+    );
+
+    // const transformedData = plainToClass(TaskDto, data);
+    return { data: transformedData, meta, links};
+    
   }
 
   // 
