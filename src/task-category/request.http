@@ -5,3 +5,9 @@ Content-Type: application/json
 {
   "title": "Sedang"
 }
+
+### get task category and cache data in service
+GET http://localhost:3000/task-category/cache-service
+
+### get task category and cache data in controller
+GET http://localhost:3000/task-category/cache-controller
