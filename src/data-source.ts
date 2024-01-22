@@ -12,6 +12,8 @@ export const appDataSource = new DataSource({
   username: "root",
   password: "root",
   database: "taskmanager",
-  entities: ['**/*.entity.ts'],
+  // entities: ['**/*.entity.ts'],
+  // entities: [Users, Tasks, TaskCategoryEntity],
   migrations: ['migrations/*.ts'],
+  // migrations: ['migrations/1705713263118-createChannelTable.ts'],
 } as DataSourceOptions);

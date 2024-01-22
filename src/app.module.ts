@@ -15,6 +15,10 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TaskCategoryModule } from './task-category/task-category.module';
 import { TaskCategoryEntity } from './task-category/task-category.entity';
 // import { AxiosService } from './axios.service';
+import { ChannelModule } from './channel/channel.module';
+import { ChannelEntity } from './channel/channel.entity';
+import { ChannelMethodModule } from './channel-method/channel-method.module';
+import { ChannelMethodEntity } from './channel-method/channel-method.entity';
 
 @Module({
   imports: [
@@ -43,14 +47,16 @@ import { TaskCategoryEntity } from './task-category/task-category.entity';
       database: "taskmanager",
       synchronize: false,
       logging: true,
-      entities: [Users, Tasks, TaskCategoryEntity],
+      entities: [Users, Tasks, TaskCategoryEntity, ChannelEntity, ChannelMethodEntity],
       subscribers: [],
       migrations: []
     }),
     UserModule,
     AuthModule,
     TaskModule,
-    TaskCategoryModule
+    TaskCategoryModule,
+    ChannelModule,
+    ChannelMethodModule,
   ],
   controllers: [AppController, UserController, AuthController],
   providers: [AppService], //AxiosService

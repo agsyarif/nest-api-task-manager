@@ -1,0 +1,20 @@
+### create channel
+POST http://localhost:3000/channel
+Content-Type: application/json
+
+{
+  "name": "linkqu",
+  "notes": "payment linkqu"
+}
+
+### find channel by id
+GET http://localhost:3000/channel/1
+
+### linkqu channel
+GET http://localhost:3000/channel/linkqu/chanel
+
+###
+GET https://gateway-dev.linkqu.id/linkqu-partner/masterbank/list
+Content-Type: application/json
+client-id: testing
+client-secret: 123

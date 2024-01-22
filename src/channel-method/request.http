@@ -1,0 +1,27 @@
+### create channel method 
+POST http://localhost:3000/channel-method
+Content-Type: application/json
+
+{
+  "channelMethodName": "PERMATA BANK",
+  "bankCode": "013",
+  "channelMethodCategory": "BANK",
+  "adminFee": 0,
+  "inActive": true,
+  "imageUrl": "https://api-mitra.linkqu.id/app/assets/013-F4309A2083E8BEF191E739494AE6DCA6.png",
+  "channelId": 1
+}
+
+### find all channel method to likqu
+GET http://localhost:3000/channel-method
+Content-Type: application/json
+
+### get emoney channel method to likqu
+GET http://localhost:3000/channel-method/emoney
+Content-Type: application/json
+
+###
+GET https://gateway-dev.linkqu.id/linkqu-partner/masterbank/list
+Content-Type: application/json
+client-id: testing
+client-secret: 123
