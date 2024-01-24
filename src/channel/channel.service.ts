@@ -4,8 +4,9 @@ import { ChannelEntity } from './channel.entity';
 import { Repository } from 'typeorm';
 import { CreateChannelDto } from './dtos/create-channel.dto';
 import { HttpService } from '@nestjs/axios';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { AxiosResponse } from 'axios';
+import * as http from 'http';
 
 @Injectable()
 export class ChannelService {
@@ -37,21 +38,7 @@ export class ChannelService {
 
 
   // LINKQU
-  getListChannel(): Observable<AxiosResponse<any>> {
-
-    // findAll(): Observable<AxiosResponse<Cat[]>> {
-    //   return this.httpService.get('http://localhost:3000/cats');
-    // }
-
-    // var request = require('request');
-    // var options = {
-    //   'method': 'GET',
-    //   'url': '/linkqu-partner/masterbank/list',
-    //   'headers': {
-    //     'client-id': 'testing',
-    //     'client-secret': '123'
-    //   }
-    // };
+  getListChannel() {
 
     return this.httpService.get("https://gateway-dev.linkqu.id/linkqu-partner/masterbank/list", {
       headers: {
@@ -59,13 +46,33 @@ export class ChannelService {
         "client-secret": "123"
       }
     })
+    // .pipe(
+    //   map((response: AxiosResponse) => {
+    //     return response.data;
+    //   })
+    // )
 
-    // request(options, function (error, response) {
-    //   if (error) throw new Error(error);
-    //   console.log(response.body);
+    // return this.httpService.get("https://gateway-dev.linkqu.id/linkqu-partner/masterbank/list", {
+    //   headers: {
+    //     "client_id": "testing",
+    //     "client_secret": "123"  // Corrected to "client_secret"
+    //   }
+    // })
+    //   .toPromise()  // Assuming you want to convert the observable to a promise
+    //   .then(response => {
+    //     console.log(response.data);
+    //   })
+    //   .catch(error => {
+    //     console.error('Error:', error.message);
+    //   });
+
+    // return this.httpService.get("https://gateway-dev.linkqu.id/linkqu-partner/masterbank/list", {
+    //   headers: {
+    //     "client_id": "testing",
+    //     "client_secret": "123"
+    //   }
     // });
-
-    // return ;
+    
   }
     
   

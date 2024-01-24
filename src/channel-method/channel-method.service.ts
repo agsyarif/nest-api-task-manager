@@ -71,7 +71,11 @@ export class ChannelMethodService {
 
   }   
 
-  findOne() {
-
+  findOne(bank_code: string) {
+    return this.repo.findOne({
+      where: {
+        bankCode: bank_code
+      }
+    })
   }
 }

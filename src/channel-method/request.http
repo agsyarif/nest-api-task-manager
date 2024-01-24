@@ -13,7 +13,7 @@ Content-Type: application/json
 }
 
 ### find all channel method to likqu
-GET http://localhost:3000/channel-method
+GET http://localhost:3000/channel-method/bank
 Content-Type: application/json
 
 ### get emoney channel method to likqu

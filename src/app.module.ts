@@ -19,6 +19,11 @@ import { ChannelModule } from './channel/channel.module';
 import { ChannelEntity } from './channel/channel.entity';
 import { ChannelMethodModule } from './channel-method/channel-method.module';
 import { ChannelMethodEntity } from './channel-method/channel-method.entity';
+import { ReceiveFundsController } from './transactions/receive-funds/receive-funds.controller';
+import { ReceiveFundsModule } from './transactions/receive-funds/receive-funds.module';
+import { SignatureController } from './transactions/signature/signature.controller';
+import { SignatureModule } from './transactions/signature/signature.module';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   imports: [
@@ -57,8 +62,11 @@ import { ChannelMethodEntity } from './channel-method/channel-method.entity';
     TaskCategoryModule,
     ChannelModule,
     ChannelMethodModule,
+    ReceiveFundsModule,
+    SignatureModule,
+    HttpModule.register({})
   ],
-  controllers: [AppController, UserController, AuthController],
+  controllers: [AppController, UserController, AuthController, ReceiveFundsController, SignatureController],
   providers: [AppService], //AxiosService
 })
 export class AppModule {}

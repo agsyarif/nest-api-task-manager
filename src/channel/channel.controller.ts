@@ -24,6 +24,15 @@ export class ChannelController {
 
     return this.channelService.getListChannel();
 
+    // this.channelService.getListChannel().subscribe (
+    //   response => {
+    //     console.log(response.data);
+    //   },
+    //   error => {
+    //     console.error('Error:', error.message);
+    //   }
+    // );
+
     // var request = require('request');
     // var options = {
     //   'method': 'GET',
