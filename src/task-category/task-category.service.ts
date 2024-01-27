@@ -47,14 +47,13 @@ export class TaskCategoryService {
 
     const cachedData = await this.cacheManager.get<{ data: any; itemCount: number }>("task-category-pagination");
 
-
     if (cachedData) {
       console.log(`Getting data from cache!`);
       // const { data, itemCount } = cachedData;
       return cachedData;
     }
 
-  const [ data, itemCount ] = await this.repo.findAndCount();
+    const [ data, itemCount ] = await this.repo.findAndCount();
 
     const cache = await this.cacheManager.set("task-category-pagination", {data, itemCount}) // 10 = tts
 
