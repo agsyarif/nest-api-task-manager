@@ -19,25 +19,24 @@ export class TaskService {
   ) {}
 
 
-  create(body: CreateTaskDto, user: Users, taskCategory: TaskCategoryEntity) {    
+  create(createTaskDto: CreateTaskDto, user: Users, taskCategory: TaskCategoryEntity) {    
     if (!user || !user.id) {
       throw new BadRequestException('User is required with a valid ID');
     }
 
-    // const task = this.repo.create({ ...body, user: user });
-    const task = this.repo.create(body);
+    const task = this.repo.create(createTaskDto);
     task.user = user
     task.taskCategory = taskCategory
     
     return this.repo.save(task);
   }
 
-  findOne(id: number) {
+  async findOne(id: number) {
     if(!id) {
       return null;
     }
 
-    const user = this.repo.findOne({
+    const user = await this.repo.findOne({
       where: {
         id: id
       }

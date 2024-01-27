@@ -25,7 +25,7 @@ export class VirtualAccountController {
 
     const url = url_linkqu + path_va_permata
 
-    const bodyRequest = {...body, signature, url_callback: process.env.URL_CALLBACK}
+    const bodyRequest = {...body, signature, url_callback: "https://webhook.site/022ea05b-02af-4b77-b868-b291d32699e8"}
 
     const vaPermata = this.httpService.post(url, bodyRequest, { headers }).pipe(
       map((response: AxiosResponse) => {

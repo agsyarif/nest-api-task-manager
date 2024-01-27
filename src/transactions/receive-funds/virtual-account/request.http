@@ -5,7 +5,7 @@ Content-Type: application/json
 
 {
   "amount" : 30000,
-	"partner_reff" : "200102083952237456",
+	"partner_reff" : "200102083952237461",
 	"customer_id" : "31857118",
 	"customer_name" : "GPI LINKQU",
 	"expired" : "20240222150000",
@@ -14,7 +14,7 @@ Content-Type: application/json
 	"customer_phone" : "081231857418",
 	"customer_email" : "pay@linkqu.id",
   "bank_code" : "013",
-  "url_callback" : "https://url_callback_partner.com"
+  "url_callback" : "https://webhook.site/022ea05b-02af-4b77-b868-b291d32699e8"
 }
 
 ### create va other bank
@@ -40,7 +40,7 @@ POST http://localhost:3000/virtual-account/va-dedicated
 Content-Type: application/json
 
 {
-  "customer_id": "31857118",
+  "customer_id": "31857119",
   "customer_phone": "081231857418",
   "customer_name": "PAY GPI",
   "customer_email": "pay@linkqu.id",

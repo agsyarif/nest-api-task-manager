@@ -24,6 +24,8 @@ import { ReceiveFundsModule } from './transactions/receive-funds/receive-funds.m
 import { SignatureController } from './transactions/signature/signature.controller';
 import { SignatureModule } from './transactions/signature/signature.module';
 import { HttpModule } from '@nestjs/axios';
+import { ProductModule } from './product/product.module';
+import { ProductEntity } from './product/product.entity';
 
 @Module({
   imports: [
@@ -52,7 +54,7 @@ import { HttpModule } from '@nestjs/axios';
       database: "taskmanager",
       synchronize: false,
       logging: true,
-      entities: [Users, Tasks, TaskCategoryEntity, ChannelEntity, ChannelMethodEntity],
+      entities: [Users, Tasks, TaskCategoryEntity, ChannelEntity, ChannelMethodEntity, ProductEntity],
       subscribers: [],
       migrations: []
     }),
@@ -64,7 +66,8 @@ import { HttpModule } from '@nestjs/axios';
     ChannelMethodModule,
     ReceiveFundsModule,
     SignatureModule,
-    HttpModule.register({})
+    HttpModule.register({}),
+    ProductModule
   ],
   controllers: [AppController, UserController, AuthController, ReceiveFundsController, SignatureController],
   providers: [AppService], //AxiosService
